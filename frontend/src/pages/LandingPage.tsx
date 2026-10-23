@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, BookOpen, Globe, CheckCircle } from 'lucide-react';
 import { submitResearch } from '../lib/api';
 import type { ResearchResponse } from '@shared/types';
@@ -15,6 +16,7 @@ const EXAMPLE_TOPICS = [
 ];
 
 export default function LandingPage({ onResearchComplete }: LandingPageProps) {
+  const navigate = useNavigate();
   const [topic, setTopic] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,9 +31,7 @@ export default function LandingPage({ onResearchComplete }: LandingPageProps) {
     try {
       const result = await submitResearch({ topic, maxSources: 10 });
       onResearchComplete(result);
-      // Navigate will be handled by App component state
-      window.history.pushState({}, '', '/results');
-      window.dispatchEvent(new PopStateEvent('popstate'));
+      navigate('/results');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Research failed. Please try again.');
     } finally {

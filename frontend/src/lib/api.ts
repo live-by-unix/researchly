@@ -38,6 +38,9 @@ export async function checkHealth(): Promise<HealthResponse> {
 }
 
 export async function submitResearch(request: ResearchRequest): Promise<ResearchResponse> {
+  console.log('Submitting research request:', request);
+  console.log('API base URL:', API_BASE_URL);
+
   const response = await fetch(`${API_BASE_URL}/v1/research`, {
     method: 'POST',
     headers: {
@@ -46,5 +49,8 @@ export async function submitResearch(request: ResearchRequest): Promise<Research
     body: JSON.stringify(request),
   });
 
-  return handleResponse<ResearchResponse>(response);
+  console.log('Response status:', response.status);
+  const result = await handleResponse<ResearchResponse>(response);
+  console.log('Research result:', result);
+  return result;
 }
