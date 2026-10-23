@@ -16,6 +16,9 @@ Research.ly helps users research a topic by:
 
 **This is a source-by-source research engine, not a chatbot that writes one essay and invents references.** Each result corresponds to an actual source discovered through Firecrawl.
 
+## Visit the website
+To visit the website, click [here](https://researchly-bcg.pages.dev/)
+
 ## Architecture
 
 Research.ly consists of two separately deployable Cloudflare applications:
@@ -38,7 +41,7 @@ The Worker handles all provider integrations (Firecrawl, Groq) and keeps API key
 - Responsive design for desktop, tablet, and mobile
 - Accessible keyboard navigation
 
-## Prerequisites
+## Prerequisites (for running locally)
 
 - Node.js >= 18.0.0
 - npm >= 9.0.0
