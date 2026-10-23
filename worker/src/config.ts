@@ -14,7 +14,7 @@ export const FIRECRAWL_API_BASE = 'https://api.firecrawl.dev/v1';
 export const DEFAULT_MAX_SOURCES = 10;
 export const MAX_SOURCES_LIMIT = 20;
 export const REQUEST_TIMEOUT_MS = 120000; // 2 minutes
-export const CONCURRENT_EXTRACTIONS = 3;
+export const CONCURRENT_EXTRACTIONS = 1;
 
 // AI generation settings
 export const GROQ_MAX_TOKENS = 1000;

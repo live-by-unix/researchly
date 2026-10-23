@@ -20,11 +20,7 @@ export class FirecrawlService {
             },
             body: JSON.stringify({
                 query,
-                maxResults,
-                pageOptions: {
-                    onlyMainContent: true,
-                    fetchMainContent: true,
-                },
+                limit: maxResults,
             }),
         });
         if (!response.ok) {
@@ -35,11 +31,11 @@ export class FirecrawlService {
         // Normalize Firecrawl response to our FirecrawlSource format
         if (data.success && data.data) {
             return data.data.map((item) => ({
-                url: item.url || item.markdown?.metadata?.sourceURL,
-                title: item.title || item.markdown?.metadata?.title || 'Untitled',
-                description: item.description || item.markdown?.metadata?.description,
-                content: item.markdown?.markdown || item.content,
-                metadata: item.markdown?.metadata || {},
+                url: item.url || item.metadata?.sourceURL,
+                title: item.title || item.metadata?.title || 'Untitled',
+                description: item.description || item.metadata?.description,
+                content: item.markdown || item.content,
+                metadata: item.metadata || {},
             })).filter((source) => {
                 // Filter out sources without valid URLs or content
                 return source.url && (source.content || source.description);
@@ -60,8 +56,6 @@ export class FirecrawlService {
             },
             body: JSON.stringify({
                 url,
-                formats: ['markdown'],
-                onlyMainContent: true,
             }),
         });
         if (!response.ok) {
@@ -74,7 +68,7 @@ export class FirecrawlService {
                 url: data.data.metadata?.sourceURL || url,
                 title: data.data.metadata?.title || 'Untitled',
                 description: data.data.metadata?.description,
-                content: data.data.markdown,
+                content: data.data.markdown || data.data.content,
                 metadata: data.data.metadata,
             };
         }
