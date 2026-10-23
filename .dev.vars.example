@@ -1,0 +1,7 @@
+# Firecrawl API Key
+# Get your key at: https://www.firecrawl.dev/
+FIRECRAWL_API_KEY=your_firecrawl_api_key_here
+
+# Groq API Key
+# Get your key at: https://console.groq.com/
+GROQ_API_KEY=your_groq_api_key_here
